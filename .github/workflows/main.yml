@@ -28,6 +28,8 @@ jobs:
 
     - name: Train model
       run: |
+        # 确保导入的模块路径正确
+        export PYTHONPATH=$PYTHONPATH：github.com/Adolmeal/OpenManus
         python main.py
 
   deploy:
