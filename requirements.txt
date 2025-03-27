@@ -3,7 +3,10 @@ unidiff~=0.7.5
 
 # 添加 OpenManus 包的依赖
 git+https://github.com/Adolmeal/OpenManus.git@main#egg=openmanus
+
 #添加DeepSeek-V3包的依赖
+git+https://github.com/Adolmeal/DeepSeek-V3.git@main#egg=deepseek
+
 torch==2.4.1
 triton==3.0.0
 transformers==4.46.3
