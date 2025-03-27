@@ -1,5 +1,5 @@
 # 基础框架
-torch==2.1.0+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.6.0 -- #pytorch版本依赖
 transformers==4.35.0
 accelerate==0.25.0
 
