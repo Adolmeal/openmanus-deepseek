@@ -1,15 +1,44 @@
-from agents import DeepSeekAgent, TaskPlanner
+from agents import DeepSeekWrapper, OpenManusAdapter
+from typing import Dict
+import re
 
-def run_simulation(task: str):
-    # 任务拆解
-    planner = TaskPlanner()
-    subtasks = planner.breakdown(task)  # 调用OpenManus多智能体拆解
+class SimulationWorkflow:
+    def __init__(self):
+        self.ds_agent = DeepSeekWrapper()
+        self.om_adapter = OpenManusAdapter()
+        
+    def _error_correction(self, code: str) -> str:
+        """自动纠错机制"""
+        # 常见错误模式匹配
+        error_patterns = {
+            r"ET,\d+,SOLID\b": "ET,1,SOLID185",  # 修正元素类型
+            r"MP,EX,\d+,2e11": "MP,EX,1,2e11",    # 修正材料编号
+            r"ESIZE,\d+\.\d+": "ESIZE,0.5"        # 标准化网格尺寸
+        }
+        
+        for pattern, replacement in error_patterns.items():
+            code = re.sub(pattern, replacement, code)
+        return code
     
-    # 调用DeepSeek生成代码
-    ds_agent = DeepSeekAgent()
-    code_snippets = []
-    for subtask in subtasks:
-        code = ds_agent.generate(f"生成ANSYS APDL脚本：{subtask}")
-        code_snippets.append(auto_correct(code))  # 自动纠错[citation:3]
-    
-    return integrate_codes(code_snippets)  # 整合为完整工作流
+    def execute_workflow(self, user_request: str) -> Dict:
+        """端到端执行流程"""
+        # 任务拆解
+        subtasks = self.om_adapter.decompose_task(user_request)
+        
+        # 代码生成与纠错
+        generated_scripts = []
+        for idx, subtask in enumerate(subtasks, 1):
+            raw_code = self.ds_agent.generate_ansys_script(subtask)
+            corrected_code = self._error_correction(raw_code)
+            generated_scripts.append({
+                "subtask_id": idx,
+                "original_code": raw_code,
+                "corrected_code": corrected_code
+            })
+        
+        # 结果整合
+        return {
+            "status": "success",
+            "subtasks": generated_scripts,
+            "combined_script": "\n".join([s["corrected_code"] for s in generated_scripts])
+        }
