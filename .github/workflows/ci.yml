@@ -9,6 +9,15 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
+    
+    - name: Set up environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libtinfo5
+
+    - name: Install nsight-systems
+      run: |
+        sudo apt-get install -y nsight-systems-2023.1.2
       
       - name: Initialize submodules
         run: |
