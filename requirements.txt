@@ -12,6 +12,9 @@ vllm>=0.0.0  # 需验证是否支持Python 3.12
 # OpenManus集成
 git+https://github.com/Adolmeal/openmanus.git  # 确保仓库分支支持Python 3.12
 
+#deepseek集成
+git+https://github.com/Adolmeal/DeepSeek-V3.git
+
 # API服务与前端
 fastapi==0.104.1
 uvicorn[standard]>=0.23.0,<0.24.0
