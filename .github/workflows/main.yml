@@ -24,8 +24,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install openmanus  # 安装 openmanus 依赖
+        pip install --force-reinstall -r requirements.txt  # 强制重新安装所有依赖项
 
     - name: Train model
       run: |
