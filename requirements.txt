@@ -14,7 +14,7 @@ git+https://github.com/Adolmeal/openmanus.git  # 确保仓库分支支持Python 
 
 # API服务与前端
 fastapi==0.104.1
-uvicorn[standard]==0.23.2
+uvicorn[standard]>=0.23.0,<0.24.0
 gradio==3.50.0
 
 # 测试与质量保障
@@ -29,4 +29,4 @@ python-dotenv==1.0.0
 prometheus-client==0.17.1
 
 # ANSYS接口
-pyansys==2025.1.3  # 确认官方支持Python 3.12
+pyansys>=2025.1.0,<2026.0.0
