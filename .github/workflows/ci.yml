@@ -25,6 +25,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Set up CUDA
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cuda
+          echo "export CUDA_HOME=/usr/local/cuda" >> $GITHUB_ENV
+          echo "export PATH=$CUDA_HOME/bin:$PATH" >> $GITHUB_ENV
+          echo "export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+
       - name: Run tests
         run: |
           pytest tests/ --cov=agents --cov=workflows
