@@ -1,14 +1,19 @@
 name: CI Pipeline
+
 on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: nvidia/cuda:12.1.1-base-ubuntu22.04  # 使用NVIDIA CUDA镜像
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive  # 仅需私有仓库时添加
+          submodules: true
+
+      - name: Initialize submodules
+        run: |
+          git submodule init
+          git submodule update --remote --recursive
 
       - name: Setup Python 3.12
         uses: actions/setup-python@v4
@@ -17,9 +22,24 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install torch==2.6.0+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run tests
-        run: pytest tests/
+        run: |
+          pytest tests/ --cov=agents --cov=workflows
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Build and push Docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ github.repository }}:latest
