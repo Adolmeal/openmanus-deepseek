@@ -9,14 +9,14 @@ on:
       - main
 
 jobs:
-  train:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Python
+    - name: Set up Python 3.12
       uses: actions/setup-python@v3
       with:
         python-version: '3.12'
@@ -28,7 +28,7 @@ jobs:
 
     - name: Train model
       run: |
-        python train.py
+        python main.py
 
   deploy:
     needs: train
