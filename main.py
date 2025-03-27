@@ -1,5 +1,8 @@
+import sys
+sys.path.insert(0, '/path/to/OpenManus')
+
 import torch
-from openmanus import OpenManusModel
+from openmanus_model import OpenManusModel  # 确保导入正确的模块
 from deepseek import DeepSeekModel
 
 class AutoMasterCoder(torch.nn.Module):
