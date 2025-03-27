@@ -2,4 +2,3 @@ torch
 numpy
 git+https://github.com/mannaandpoem/OpenManus.git#egg=openmanus
 git+https://github.com/Adolmeal/DeepSeek-V3.git#egg=deepseek
-# browser-use==0.1.40
