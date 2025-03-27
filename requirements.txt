@@ -13,5 +13,5 @@ transformers==4.46.3
 safetensors==0.4.5
 
 # 添加其他必要的依赖
-pyfluent==0.2.6
+pyfluent
 boto3==1.26.0
