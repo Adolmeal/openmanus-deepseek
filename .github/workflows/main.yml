@@ -26,12 +26,18 @@ jobs:
         python -m venv venv
         source venv/bin/activate
         python -m pip install --upgrade pip
-        pip install --force-reinstall -r requirements.txt  # 强制重新安装所有依赖项
+        pip install --force-reinstall -r requirements.txt  # 安装 openmanus-deepseek 的依赖项
+
+    - name: Install dependencies for DeepSeek-V3
+      run: |
+        git clone https://github.com/Adolmeal/DeepSeek-V3.git
+        cd DeepSeek-V3
+        pip install --force-reinstall -r inference/requirements.txt  # 安装 DeepSeek-V3 的依赖项
 
     - name: Train model
       run: |
-        # 确保导入的模块路径正确
-        export PYTHONPATH=$PYTHONPATH:git+https://github.com/Adolmeal/OpenManus:git+https://github.com/Adolmeal/DeepSeek-V3
+        source venv/bin/activate
+        export PYTHONPATH=$PYTHONPATH:$(pwd)/OpenManus:$(pwd)/DeepSeek-V3
         python main.py
 
   deploy:
@@ -44,5 +50,6 @@ jobs:
 
     - name: Deploy model
       run: |
+        source venv/bin/activate
         # 这里您可以添加部署模型到云服务的命令
         echo "Deploying model..."
