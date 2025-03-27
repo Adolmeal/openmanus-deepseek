@@ -1,4 +1,4 @@
 torch
 numpy
 git+https://github.com/mannaandpoem/OpenManus.git#egg=openmanus
-deepseek
+git+https://github.com/Adolmeal/DeepSeek-V3.git#egg=deepseek
