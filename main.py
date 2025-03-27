@@ -1,15 +1,16 @@
 import sys
-sys.path.insert(0, '/path/to/OpenManus')
+sys.path.insert(0, 'github.com/Adolmeal/OpenManus')
+sys.path.insert(0, 'github.com/Adolmeal/DeepSeek-V3')
 
 import torch
 from app.agent.manus import Manus  # 确保导入正确的模块
-from deepseek import DeepSeekModel
+from inference.model import Transformer
 
 class AutoMasterCoder(torch.nn.Module):
     def __init__(self):
         super(AutoMasterCoder, self).__init__()
         self.openmanus_model = Manus()
-        self.deepseek_model = DeepSeekModel()
+        self.deepseek_model = Transformer(ModelArgs())
 
     def forward(self, x):
         openmanus_output = self.openmanus_model(x)
