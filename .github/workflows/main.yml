@@ -40,5 +40,5 @@ jobs:
 
     - name: Deploy model
       run: |
-        # 这里你可以添加部署模型到云服务的命令
+        # 这里您可以添加部署模型到云服务的命令
         echo "Deploying model..."
