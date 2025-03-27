@@ -2,13 +2,13 @@ import sys
 sys.path.insert(0, '/path/to/OpenManus')
 
 import torch
-from openmanus_model import OpenManusModel  # 确保导入正确的模块
+from app.agent.manus import Manus  # 确保导入正确的模块
 from deepseek import DeepSeekModel
 
 class AutoMasterCoder(torch.nn.Module):
     def __init__(self):
         super(AutoMasterCoder, self).__init__()
-        self.openmanus_model = OpenManusModel()
+        self.openmanus_model = Manus()
         self.deepseek_model = DeepSeekModel()
 
     def forward(self, x):
