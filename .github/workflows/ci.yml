@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true  # 启用子模块拉取
+          submodules: true
 
       - name: Initialize submodules
         run: |
