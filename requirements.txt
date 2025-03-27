@@ -7,7 +7,7 @@ accelerate==0.25.0,<1.0.0
 # 模型优化与部署
 deepspeed==0.12.6  # 兼容Torch 2.6.0
 bitsandbytes==0.41.3
-vllm==0.5.4,<1.0.0  # 需验证是否支持Python 3.12
+vllm==>1.0.0  # 需验证是否支持Python 3.12
 
 # OpenManus集成
 git+https://github.com/Adolmeal/openmanus.git  # 确保仓库分支支持Python 3.12
