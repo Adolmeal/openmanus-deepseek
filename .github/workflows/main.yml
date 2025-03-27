@@ -21,15 +21,17 @@ jobs:
       with:
         python-version: '3.12'
 
-    - name: Install dependencies
+    - name: Set up virtual environment
       run: |
+        python -m venv venv
+        source venv/bin/activate
         python -m pip install --upgrade pip
         pip install --force-reinstall -r requirements.txt  # 强制重新安装所有依赖项
 
     - name: Train model
       run: |
         # 确保导入的模块路径正确
-        export PYTHONPATH=$PYTHONPATH:/path/to/OpenManus:/path/to/DeepSeek-V3
+        export PYTHONPATH=$PYTHONPATH:git+https://github.com/Adolmeal/OpenManus:git+https://github.com/Adolmeal/DeepSeek-V3
         python main.py
 
   deploy:
