@@ -6,7 +6,7 @@ accelerate==0.25.0
 # 模型优化与部署
 deepspeed==0.12.6
 bitsandbytes==0.41.3
-vllm==0.3.0
+vllm==0.5.4
 
 # OpenManus集成
 git+https://github.com/Adolmeal/openmanus.git
