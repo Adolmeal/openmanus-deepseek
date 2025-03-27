@@ -1,11 +1,5 @@
 torch
 numpy
-git+https://github the package is not available on PyPI:
-
-```pip
-.com/mannaandpoem/OpenManus.git#egg=openmanus
-torch
-numpy
-git+https://github.com/mannaandpoem/OpenMangit+https://github.com/Adolmeal/DeepSeek-V3.git#egg=us.git#egg=openmanus
-git+https://github.com/Adolmealdeepseek
+git+https://github.com/mannaandpoem/OpenManus.git#egg=openmanus
+git+https://github.com/Adolmeal/DeepSeek-V3.git#egg=deepseek
 # browser-use==0.1.40
