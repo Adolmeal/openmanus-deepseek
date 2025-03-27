@@ -28,4 +28,4 @@ python-dotenv==1.0.0
 prometheus-client==0.17.1
 
 #ANSYS接口（你喜欢什么）
-ansys-api-fluent==0.1.2#需要企业授权
+pyansys==v2025.1.3
