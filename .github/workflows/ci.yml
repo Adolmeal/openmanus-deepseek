@@ -60,8 +60,3 @@ jobs:
           context: .
           push: true
           tags: ${{ github.repository }}:latest
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          tags: ${{ github.repository }}:latest
