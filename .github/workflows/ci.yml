@@ -32,6 +32,9 @@ jobs:
           echo "CUDA_HOME=/usr/local/cuda" >> $GITHUB_ENV
           echo "PATH=/usr/local/cuda/bin:$PATH" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+          export CUDA_HOME=/usr/local/cuda
+          export PATH=/usr/local/cuda/bin:$PATH
+          export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
       - name: Verify CUDA installation
         run: |
@@ -52,6 +55,11 @@ jobs:
           submodules: true
 
       - name: Build and push Docker
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: ${{ github.repository }}:latest
         uses: docker/build-push-action@v3
         with:
           context: .
